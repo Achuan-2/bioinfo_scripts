@@ -28,6 +28,7 @@ echo "dealing with ${ID}"
 
 if [[ -s ${reads_for} ]] && [[ -s ${reads_rev} ]] ;then
 
+## or jusr mkdir -p ${RESULT}/${ID}
 if [ ! -d ${RESULT}/${ID} ];then
       mkdir -p ${RESULT}/${ID}
 fi
