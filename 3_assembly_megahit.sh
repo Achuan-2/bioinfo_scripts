@@ -21,6 +21,8 @@ RESULT=${contig_path}/${ID}/${ID}
 mkdir -p ${contig_path}
 
 megahit -t 10 --min-contig-len 1000 \
+        --k-list 27,37,47,57,67,77,87 \
+        --kmin-1pass -m 60e+10 
         -1 ${RESULT}_paired_clean1.fq \
         -2 ${RESULT}_paired_clean2.fq \
         -o ${contig_path}/${ID}
