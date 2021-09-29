@@ -7,7 +7,7 @@
 #SBATCH -o slurm.%N.%j.%x.out        # STDOUT
 #SBATCH -e slurm.%N.%j.%x.err        # STDERR
 
-# settings
+# settings1
 ID=$1
 HOST=/mnt/raid7/wangteng/buffalo/cattle/bwa_mapping/host_genomes/database/all_contamination_ref.db
 PROJECT_HOME=/mnt/raid7/Dachuang/Achuan # project folder
