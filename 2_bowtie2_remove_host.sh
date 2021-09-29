@@ -9,7 +9,7 @@
 
 source /mnt/raid1/wuyingjian/biosoft/miniconda/etc/profile.d/conda.sh
 conda activate base
-
+1
 infile=$1
 
 mkdir -p 02_removed_host/${infile}/
