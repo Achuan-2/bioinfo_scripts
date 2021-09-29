@@ -11,7 +11,7 @@
 
 ########### input **********
 
-# input settings
+# input setting
 ID=$1 
 PROJECT_HOME=/mnt/raid7/Dachuang/Achuan # project folder
 RESULT=${PROJECT_HOME}/01_cleandata #output folder
@@ -19,7 +19,7 @@ DATA=${PROJECT_HOME}/data/train_data # data to clean
 reads_for=${DATA}/${ID}/${ID}_1.fastq.gz   # forward read
 reads_rev=${DATA}/${ID}/${ID}_2.fastq.gz  # backward read
 
-# software settings
+# software setting
 Trimmomatic=/mnt/raid1/wuyingjian/biosoft/Trimmomatic-0.39/trimmomatic-0.39.jar
 adapter=/mnt/raid1/wuyingjian/biosoft/Trimmomatic-0.39/adapters
 
