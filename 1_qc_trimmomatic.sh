@@ -34,6 +34,7 @@ if [ ! -d ${RESULT}/${ID} ];then
 fi
 
 java -jar ${Trimmomatic} PE -threads 10 \
+      -phred33 \
       "$reads_for" \
       "$reads_rev" \
       ${RESULT}/${ID}/${ID}_clean_R1.fq ${RESULT}/${ID}/${ID}_clean_unpaired_R1.fq \
