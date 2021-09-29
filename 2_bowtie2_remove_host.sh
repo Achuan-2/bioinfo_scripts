@@ -7,13 +7,14 @@
 #SBATCH -o slurm.%N.%j.%x.out        # STDOUT
 #SBATCH -e slurm.%N.%j.%x.err        # STDERR
 
-
+# settings
 ID=$1
 HOST=/mnt/raid7/wangteng/buffalo/cattle/bwa_mapping/host_genomes/database/all_contamination_ref.db
 PROJECT_HOME=/mnt/raid7/Dachuang/Achuan # project folder
 DATA=${PROJECT_HOME}/01_cleandata/${ID}/${ID}
 RESULT=${PROJECT_HOME}/02_removed_host/${ID}/${ID}
 
+# run
 mkdir -p 02_removed_host/${ID}/
 
 bowtie2 -x ${HOST} -p 10  --very-sensitive \
