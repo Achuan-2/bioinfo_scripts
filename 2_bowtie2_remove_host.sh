@@ -14,7 +14,7 @@ PROJECT_HOME=/mnt/raid7/Dachuang/Achuan # project folder
 DATA=${PROJECT_HOME}/01_cleandata/${ID}/${ID}
 RESULT=${PROJECT_HOME}/02_removed_host/${ID}/${ID}
 
-# run1
+# run
 mkdir -p 02_removed_host/${ID}/
 
 bowtie2 -x ${HOST} -p 10  --very-sensitive \
