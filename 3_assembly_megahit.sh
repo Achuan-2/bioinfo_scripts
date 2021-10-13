@@ -11,12 +11,11 @@
 ID=$1
 echo "dealing with ${ID}"
 PROJECT_HOME=/mnt/raid7/Dachuang/Achuan
-pwd_path=`pwd`
-removed_host=${PROJECT_HOME}/02_removed_host
-contig_path=${PROJECT_HOME}/03_assembly_megahit
-INPUT=${removed_host}/${ID}/${ID}
+REMOVED_HOST=${PROJECT_HOME}/02_removed_host
+CONTIG_PATH=${PROJECT_HOME}/03_assembly_megahit
+INPUT=${REMOVED_HOST}/${ID}/${ID}
 
-mkdir -p ${contig_path}
+mkdir -p ${CONTIG_PATH}
 
 # run megahit
 megahit -t 10 --min-contig-len 1000 \
@@ -24,6 +23,6 @@ megahit -t 10 --min-contig-len 1000 \
         --kmin-1pass \
         -1 ${INPUT}_paired_clean1.fq \
         -2 ${INPUT}_paired_clean2.fq \
-        -o ${contig_path}/${ID} 
+        -o ${CONTIG_PATH}/${ID} 
 
 
