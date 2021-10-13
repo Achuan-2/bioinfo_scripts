@@ -5,25 +5,40 @@
 #SBATCH --mem=50G
 #SBATCH -o slurm.%j.out        # STDOUT
 #SBATCH -e slurm.%j.err        # STDERR
-source /mnt/raid1/wuyingjian/biosoft/miniconda/etc/profile.d/conda.sh
-conda activate base
+
 
 # usage : bash binning_bin3c.sh project_name whole_path_for_contigs whole_path_for_R1 whole_path_for_R2 enzyme
 ############### input ############
-project_name=$1
-path_for_contigs=$2
-path_for_R1=$3
-path_for_R2=$4
 
-mkdir -p 04_binning/"$project_name"/metabat2
-ln -s "$path_for_contigs" 04_binning/"$project_name"/metabat2/contigs.fasta
-ln -s "$path_for_R1" 04_binning/"$project_name"/metabat2/"$project_name"_R1.fq
-ln -s "$path_for_R2" 04_binning/"$project_name"/metabat2/"$project_name"_R2.fq
 
-cd 04_binning/"$project_name"/metabat2
+# settings,ERR2027889
+ID=$1
+PROJECT_HOME=/mnt/raid7/Dachuang/Achuan
+FASTA_PATH=${PROJECT_HOME}/02_removed_host/${ID}
+CONTIG_PATH=${PROJECT_HOME}/03_assembly_megahit/${ID}/final.contigs.fa
+BINNING_PATH=${PROJECT_HOME}/04_binning/${ID}
+echo "dealing with ${ID}"
+
+mkdir -p ${BINNING_PATH}
+
+ln -s ${CONTIG_PATH} ${BINNING_PATH}/contigs.fa
+ln -s ${FASTA_PATH}/${ID}_paired_clean1.fq  ${BINNING_PATH}/${ID}_R1.fq
+ln -s ${FASTA_PATH}/${ID}_paired_clean2.fq  ${BINNING_PATH}/${ID}_R2.fq
+
+
+cd ${BINNING_PATH}
 
 # build index
-bwa index ./contigs.fasta
-bwa mem -5SP contigs.fasta "$project_name"_R1.fq "$project_name"_R2.fq -t 10  | samtools view -F 0x904 -bS -@ 10  -  | samtools sort -o sample.sort.bam -@ 10  -
+bwa index ./contigs.fa
 
-sh /mnt/raid1/wuyingjian/biosoft/metabat2/berkeleylab-metabat/runMetaBat.sh ./contigs.fasta ./sample.sort.bam
+# bwa men :alignment -> samtools view -> transform to bam -> samtools sort
+
+bwa mem  contigs.fa ${ID}_R1.fq ${ID}_R2.fq -t 10 | samtools view -@ 10 -o contig.bam  -bS - 
+
+samtools sort -o contig.sorted.bam -@ 10 contig.bam 
+
+jgi_summarize_bam_contig_depths --outputDepth contig.depth.txt contig.sorted.bam
+
+metabat2 -m 1500 -t 10 -i ./contigs.fa  -a contig.depth.txt -o bins_dir/bin -v
+
+
