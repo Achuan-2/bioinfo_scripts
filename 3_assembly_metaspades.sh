@@ -3,8 +3,8 @@
 ### ==== NUMBER OF CPUS per TASK ====
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=50G
-#SBATCH -o slurm.%j.out        # STDOUT
-#SBATCH -e slurm.%j.err        # STDERR
+#SBATCH -o slurm.%x.%j.out        # STDOUT
+#SBATCH -e slurm.%x.%j.err        # STDERR
 ###################################################
 
 ID=$1

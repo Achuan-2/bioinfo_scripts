@@ -3,8 +3,8 @@
 ### ==== NUMBER OF CPUS per TASK ====
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=50G
-#SBATCH -o slurm.%j.out        # STDOUT
-#SBATCH -e slurm.%j.err        # STDERR
+#SBATCH -o slurm.%x.%j.out        # STDOUT
+#SBATCH -e slurm.%x.%j.err        # STDERR
 
 
 # usage : bash binning_bin3c.sh project_name whole_path_for_contigs whole_path_for_R1 whole_path_for_R2 enzyme
