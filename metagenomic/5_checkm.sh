@@ -32,4 +32,4 @@ export PATH=$PATH:'/mnt/raid7/Dachuang/Achuan/biosoft/pplacer-Linux-v1.1.alpha19
 # --nt输出每一个bin中的基因序列（调用prodigal软件进行预测）
 # -f bins_qa.txt 将默认输出到标准输出的评估结果储存到指定结果文件
 # bin_dir 输入文件夹
-checkm lineage_wf -t 20 -x fa --nt --tab_table -f bins_qa.txt ${BINNING_PATH}  ${OUTPUT}  
+checkm lineage_wf -t 20 -x fa --nt --tab_table -f ${OUTPUT}/bins_qa.txt ${BINNING_PATH}  ${OUTPUT}  

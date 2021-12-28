@@ -11,6 +11,8 @@
 
 ########### input **********
 
+fastq-dump --split-3 ./SRR11825872/SRR11825872.sra
+
 # input settings
 ID=$1 
 PROJECT_HOME=/mnt/raid7/Dachuang/Achuan # project folder
