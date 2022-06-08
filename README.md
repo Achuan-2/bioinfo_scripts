@@ -1,2 +1,2 @@
-# bioinfo_scripts
-scripts for bioinformatics
+# metagenomic_scripts
+scripts for metagenomic bioinformatics
